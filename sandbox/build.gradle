@@ -1,3 +1,3 @@
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = "MySecProg"
+mainClassName = "ru.stqa.homework.sandbox.MySecProg"
