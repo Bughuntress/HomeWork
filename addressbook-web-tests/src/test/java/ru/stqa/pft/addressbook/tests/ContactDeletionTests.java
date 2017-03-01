@@ -11,8 +11,6 @@ public class ContactDeletionTests extends TestBase {
     app.getGroupHelper().selectGroup();
     app.getContactHelper().selectedDeleteContact();
     app.getContactHelper().closePopup();
-
-
   }
 
 
