@@ -12,7 +12,7 @@ public class GroupModificationTests extends TestBase {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGroupCreation(new GroupData("Creationgroup", "name", "test1"));
+    app.getGroupHelper().fillGroupCreation(new GroupData("Сказочные герои", "name", "null"));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
   }

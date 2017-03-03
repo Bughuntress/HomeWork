@@ -12,7 +12,7 @@ public class ContactModificationTests extends TestBase {
     app.getNavigationHelper().gotoContactPage();
     app.getGroupHelper().selectGroup();
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactCreation(new ContactData("Белль", "Джейсон", "Красавица", "Красавица и Чудовище", "Диснейлэнд", "1, Заколдованный Замок, Волшебный Лес", "+22222222", "22, Дом Отца, Маленькая деревушка"));
+    app.getContactHelper().fillContactCreation(new ContactData("Белль", "Джейсон", "Красавица", "Красавица и Чудовище", "Диснейлэнд", "1, Заколдованный Замок, Волшебный Лес", "+22222222", "22, Дом Отца, Маленькая деревушка", null), false);
     app.getContactHelper().submitContactModification();
 
   }
