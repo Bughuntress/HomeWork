@@ -35,10 +35,16 @@ public class ContactHelper extends HelperBase {
   }
 
   public void inputContactCreation() {
+
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillContactCreation(ContactData contactData, boolean creation) {
+    if (isElementPressent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPressent(By.name("update"))) {
+      return;
+    }
     type(By.name("firstname"), contactData.getName());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNickname());
@@ -58,14 +64,24 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactCreation() {
-    click(By.linkText("add new"));
+      click(By.linkText("add new"));
   }
 
   public void initContactModification() {
+    if (isElementPressent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPressent(By.name("update"))) {
+      return;
+    }
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void submitContactModification() {
+    if (isElementPressent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPressent(By.name("update"))) {
+      return;
+    }
     click(By.name("update"));
   }
 }
