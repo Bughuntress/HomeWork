@@ -28,8 +28,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContact() {
+    wd.findElements(By.name("selected[]"));
     }
 
   public void returnToContactCreation() {
@@ -107,7 +107,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+ /* public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element: elements){
@@ -118,5 +118,5 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
 
-  }
+  }*/
 }
