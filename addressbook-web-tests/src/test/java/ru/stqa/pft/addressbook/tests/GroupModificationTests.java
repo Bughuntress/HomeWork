@@ -13,23 +13,22 @@ import java.util.List;
 public class GroupModificationTests extends TestBase {
   @Test
   public void testGroupModification(){
+
     app.getNavigationHelper().gotoGroupPage();
+    int before = app.getGroupHelper().getGroupCount();
+     
 
     if (!app.getGroupHelper().isThereAGroup()){
       app.getGroupHelper().createGroup(new GroupData("Сказочные герои", "name", null));
     }
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().selectGroup(before.size()-1);
+
+    app.getGroupHelper().selectGroup(before-1);
     app.getGroupHelper().initGroupModification();
-    GroupData group = new GroupData(before.get(before.size()-1).getId(),"Сказочные герои", "name", "null");
-    app.getGroupHelper().fillGroupCreation(group);
+
+    app.getGroupHelper().fillGroupCreation(new GroupData("Сказочные герои", "name", null));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(before.size()-1);
-    before.add(group);
-    Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
+    int after = app.getGroupHelper().getGroupCount();
+    Assert.assertEquals(after,before);
   }
 }
