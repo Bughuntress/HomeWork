@@ -107,6 +107,20 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    List<WebElement> cells = wd.findElements(By.tagName("td"));
+    for (WebElement element: elements){
+      String lastname = element.getText();
+      String nickname = element.getText();
+      String company = element.getText();
+      ContactData contact = new ContactData(null, lastname, nickname, null,company, null, null,null, null);
+      contacts.add(contact);
+     }
+return contacts;
+}
+
  /* public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
