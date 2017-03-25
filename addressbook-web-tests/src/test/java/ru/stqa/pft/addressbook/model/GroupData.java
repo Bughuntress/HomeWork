@@ -33,8 +33,8 @@ public class GroupData {
   @Override
   public String toString() {
     return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
+            "name='" + name + '\'' +
+            ", header='" + header + '\'' +
             '}';
   }
 
@@ -45,14 +45,14 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != null ? !id.equals(groupData.id) : groupData.id != null) return false;
-    return name != null ? name.equals(groupData.name) : groupData.name == null;
+    if (name != null ? !name.equals(groupData.name) : groupData.name != null) return false;
+    return header != null ? header.equals(groupData.header) : groupData.header == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (header != null ? header.hashCode() : 0);
     return result;
   }
 
