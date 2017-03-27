@@ -16,7 +16,7 @@ public class GroupDeletionTests extends TestBase {
     app.getNavigationHelper().gotoGroupPage();
 
      if (!app.getGroupHelper().isThereAGroup()){
-        app.getGroupHelper().createGroup(new GroupData("Сказочные герои", "name", null));
+        app.getGroupHelper().createGroup(new GroupData("Сказочные герои", "Мультики", null));
     }
 
     List<GroupData> before = app.getGroupHelper().getGroupList();

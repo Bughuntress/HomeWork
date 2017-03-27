@@ -41,9 +41,8 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "lastname='" + lastname + '\'' +
-            ", nickname='" + nickname + '\'' +
-            ", company='" + company + '\'' +
+            "name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
             '}';
   }
 
@@ -54,16 +53,14 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-    return company != null ? company.equals(that.company) : that.company == null;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
   }
 
   @Override
   public int hashCode() {
-    int result = lastname != null ? lastname.hashCode() : 0;
-    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-    result = 31 * result + (company != null ? company.hashCode() : 0);
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
 
