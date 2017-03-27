@@ -112,24 +112,12 @@ public class ContactHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.name("entry"));
     List<WebElement> cells = wd.findElements(By.tagName("td"));
     for (WebElement element: elements){
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String name = element.findElement(By.xpath(".//td[3]")).getText();
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-      ContactData contact = new ContactData(name, lastname, null, null,null, null, null,null, null);
+      ContactData contact = new ContactData(id, name, lastname, null, null,null, null, null,null, null);
       contacts.add(contact);
      }
 return contacts;
 }
-
- /* public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element: elements){
-      String lastname = element.findElement(By.xpath(".//td[3]")).getText();
-      String address = element.findElement(By.xpath(".//td[2]")).getText();
-      ContactData contact = new ContactData( lastname, address,null, null, null,null,null,null,null);
-      contacts.add(contact);
-    }
-    return contacts;
-
-  }*/
 }
