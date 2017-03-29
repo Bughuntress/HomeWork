@@ -1,47 +1,66 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String name;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String hometel;
-  private final String address2;
+  private int id = Integer.MAX_VALUE;
+  private String name;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String hometel;
+  private String address2;
   private String group;
 
-  public ContactData(int id, String name, String lastname, String nickname, String title, String company, String address, String hometel, String address2, String group) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactData withName(String name) {
     this.name = name;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
     this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withHometel(String hometel) {
     this.hometel = hometel;
+    return this;
+  }
+
+  public ContactData withAddress2(String address2) {
     this.address2 = address2;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
     this.group = group;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
-
-  public ContactData(String name, String lastname, String nickname, String title, String company, String address, String hometel, String address2, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.name = name;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.hometel = hometel;
-    this.address2 = address2;
-    this.group = group;
-  }
 
   public String getName() {
     return name;
@@ -82,10 +101,12 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
   @Override
   public String toString() {
     return "ContactData{" +
-            "name='" + name + '\'' +
+            "id=" + id +
+            ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }

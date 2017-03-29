@@ -12,7 +12,7 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().ContactPage();
     if (app.contact().list().size()==0){
-      app.contact().create(new ContactData(null, "Джейсон", "Красавица", "Красавица и Чудовище", "Диснейлэнд", "1, Заколдованный Замок, Волшебный Лес", "+22222222", "22, Дом Отца, Маленькая деревушка", "Сказочные герои"));
+      app.contact().create(new ContactData().withName("Белль").withLastname("Джейсон").withNickname("Красавица").withTitle("Красавица и Чудовище").withCompany("Диснейлэнд").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withGroup("Сказочные герои"));
     }
   }
 
