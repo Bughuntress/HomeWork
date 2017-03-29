@@ -95,6 +95,13 @@ public class ContactHelper extends HelperBase {
     returnToContactCreation();
 
   }
+  public void modifyContact(int index, ContactData contact) {
+    selectContact(index);
+    initContactModification();
+    fillContactCreation(contact,false);
+    submitContactModification();
+    returnToContactPage();
+  }
 
   public boolean ThereisAContact() {
     return isElementPressent(By.name("selected[]"));
