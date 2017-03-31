@@ -8,10 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Zakhidat on 27.02.2017.
@@ -95,6 +92,7 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactCreation(contact, true);
     inputContactCreation();
+    contactCashe = null;
     returnToContactCreation();
 
   }
@@ -103,6 +101,7 @@ public class ContactHelper extends HelperBase {
     initContactModification();
     fillContactCreation(contact,false);
     submitContactModification();
+    contactCashe = null;
     returnToContactPage();
   }
 
@@ -110,6 +109,7 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     selectedDeleteContact();
     closePopup();
+    contactCashe = null;
     returnToContactPage();
   }
   public boolean ThereisAContact() {
@@ -123,19 +123,24 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCashe =null;
+
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCashe != null) {
+      return new Contacts(contactCashe);
+    }
+    contactCashe = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     List<WebElement> cells = wd.findElements(By.tagName("td"));
     for (WebElement element: elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String name = element.findElement(By.xpath(".//td[3]")).getText();
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-      contacts.add( new ContactData().withId(id).withName(name).withLastname(lastname));
+      contactCashe.add( new ContactData().withId(id).withName(name).withLastname(lastname));
 
     }
-    return contacts;
+    return new Contacts(contactCashe);
   }
 
 
