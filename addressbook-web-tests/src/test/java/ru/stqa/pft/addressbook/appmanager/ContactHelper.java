@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Zakhidat on 27.02.2017.
@@ -57,25 +59,27 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), contactData.getAddress2());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPressent(By.name("new_group")));
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      } else {
+        Assert.assertFalse(isElementPressent(By.name("new_group")));
+
+      }
 
     }
-
   }
 
   public void initContactCreation() {
       click(By.linkText("add new"));
   }
 
-  public void initContactModification(/*index*/) {
+  public void initContactModification() {
     if (isElementPressent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
             && isElementPressent(By.name("update"))) {
       return;
     }
-    //wd.findElements(By.xpath("//img[@title='Edit']")).get(index).click();
+    //click(By.cssSelector("img[alt='Edit']"));
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
@@ -128,7 +132,7 @@ public class ContactHelper extends HelperBase {
   private Contacts contactCashe =null;
 
 
-  public Contacts all() {
+ public Contacts all() {
     if (contactCashe != null) {
       return new Contacts(contactCashe);
     }
@@ -145,6 +149,19 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCashe);
   }
 
+  /*public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows) {
+      List<WebElement> cells =row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      contacts.add(new ContactData().withId(id).withName(firstname).withLastname(lastname));
+    }
+    return contacts;
+    }
+*/
 
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
