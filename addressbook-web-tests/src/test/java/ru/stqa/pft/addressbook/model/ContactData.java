@@ -13,6 +13,19 @@ public class ContactData {
   private String group;
   private String mobile;
   private String worktel;
+  private String allPhones;
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+
 
   public ContactData withId(int id) {
     this.id = id;

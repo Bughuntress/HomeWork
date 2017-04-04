@@ -3,6 +3,9 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -16,12 +19,18 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getHometel(), equalTo(cleaned(contactInfoFromEditForm.getHometel())));
-    assertThat(contact.getMobile(), equalTo(cleaned(contactInfoFromEditForm.getMobile())));
-    assertThat(contact.getWorktel(), equalTo(cleaned(contactInfoFromEditForm.getWorktel())));
+    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
 
-    }
-  public String cleaned(String phone) {
+  }
+
+  private String mergePhones(ContactData contact) {
+    return Arrays.asList(contact.getHometel(),contact.getMobile(),contact.getWorktel())
+            .stream().filter((s)-> ! s.equals(""))
+            .map(ContactPhoneTests::cleaned)
+            .collect(Collectors.joining("\n"));
+  }
+    
+  public static String cleaned(String phone) {
     return phone.replaceAll("\\s","").replaceAll("[-()]","");
   }
 }
