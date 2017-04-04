@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+
 /**
  * Created by Zakhidat on 27.02.2017.
  */
@@ -137,13 +139,15 @@ public class ContactHelper extends HelperBase {
       return new Contacts(contactCashe);
     }
     contactCashe = new Contacts();
+
     List<WebElement> elements = wd.findElements(By.name("entry"));
-    List<WebElement> cells = wd.findElements(By.tagName("td"));
+    //List<WebElement> cells = wd.findElements(By.tagName("td"));
     for (WebElement element: elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String name = element.findElement(By.xpath(".//td[3]")).getText();
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-      contactCashe.add( new ContactData().withId(id).withName(name).withLastname(lastname));
+      String[] phones = element.findElement(By.xpath(".//td[6]")).getText().split("\n");
+      contactCashe.add( new ContactData().withId(id).withName(name).withLastname(lastname).withHometel(phones[0]).withMobile(phones[1]).withWorktel(phones[2]));
 
     }
     return new Contacts(contactCashe);
