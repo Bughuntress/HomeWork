@@ -15,8 +15,9 @@ public class ContactData {
   private String worktel;
   private String allPhones;
   private String email;
-  private String email2;
-  private String email3;
+private String email2;
+private String email3;
+
   private String allEmails;
 
   public ContactData withEmail(String email) {
@@ -25,12 +26,12 @@ public class ContactData {
   }
 
   public ContactData withEmail2(String email2) {
-    this.email = email2;
+    this.email2 = email2;
     return this;
   }
 
   public ContactData withEmail3(String email3) {
-    this.email = email3;
+    this.email3 = email3;
     return this;
   }
 
@@ -40,7 +41,6 @@ public class ContactData {
   }
 
   public String getEmail() {
-
     return email;
   }
 
@@ -172,6 +172,15 @@ public class ContactData {
   }
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -190,15 +199,4 @@ public class ContactData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
-
 }

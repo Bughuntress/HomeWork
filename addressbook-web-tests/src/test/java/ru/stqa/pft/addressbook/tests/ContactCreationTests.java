@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() {
     app.goTo().ContactPage();
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withName("Белль").withLastname("Джейсон").withNickname("Красавица").withTitle("Красавица и Чудовище").withCompany("Диснейлэнд").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444").withGroup("Сказочные герои");
+    ContactData contact = new ContactData().withName("Белль").withLastname("Джейсон").withNickname("Красавица").withTitle("Красавица и Чудовище").withCompany("Диснейлэнд").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444").withEmail("bell@dis.com").withEmail2("bell2@dis.com").withEmail3("bell3@dis.com").withGroup("Сказочные герои");
     app.contact().create(contact);
     app.contact().returnToContactPage();
     assertThat(app.contact().count(),equalTo(before.size()+1));
@@ -26,7 +26,7 @@ public class ContactCreationTests extends TestBase {
   public void testBadContactCreation() {
     app.goTo().ContactPage();
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withName("Белль'").withLastname("Джейсон").withNickname("Красавица").withTitle("Красавица и Чудовище").withCompany("Диснейлэнд").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444").withGroup("Сказочные герои");
+    ContactData contact = new ContactData().withName("Белль'").withLastname("Джейсон").withNickname("Красавица").withTitle("Красавица и Чудовище").withCompany("Диснейлэнд").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444").withEmail("bell@dis.com").withEmail2("bell2@dis.com").withEmail3("bell3@dis.com").withGroup("Сказочные герои");
     app.contact().create(contact);
     app.contact().returnToContactPage();
     assertThat(app.contact().count(),equalTo(before.size()));
