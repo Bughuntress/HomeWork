@@ -10,9 +10,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
 
-/**
- * Created by Zakhidat on 27.02.2017.
- */
 public class ContactHelper extends HelperBase {
 
 
@@ -170,6 +167,32 @@ public class ContactHelper extends HelperBase {
     }
 */
 
+
+
+  private void initContactModificationById(int id) {
+
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    /*WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s]", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElements(By.tagName("a")).click();*/
+
+    //wd.findElement(By.xpath(String.format("//input(@value='%s']/../../td[8]/a", id))).click();
+    //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[%]/a", id))).click();
+
+  }
+
+  public ContactData FullInfoFromDetailsForm(ContactData contact) {
+    initContactDetailsById(contact.getId());
+    String fullInfo  = wd.findElement(By.cssSelector("div#content")).getText();
+    wd.navigate().back();
+    return new ContactData().withFullInfo(fullInfo);
+  }
+
+  private void initContactDetailsById(int id) {
+    //wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  wd.findElement(By.cssSelector("a[href='view.php?id=" + id + "']")).click();
+  }
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
     String name = wd.findElement(By.name("firstname")).getAttribute("value");
@@ -186,16 +209,5 @@ public class ContactHelper extends HelperBase {
             .withHometel(home).withMobile(mobile).withWorktel(work).withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  private void initContactModificationById(int id) {
-
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-    /*WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s]", id)));
-    WebElement row = checkbox.findElement(By.xpath("./../.."));
-    List<WebElement> cells = row.findElements(By.tagName("td"));
-    cells.get(7).findElements(By.tagName("a")).click();*/
-
-    //wd.findElement(By.xpath(String.format("//input(@value='%s']/../../td[8]/a", id))).click();
-    //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[%]/a", id))).click();
-
-  }
 }
+
