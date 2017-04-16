@@ -38,7 +38,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactCreation(ContactData contactData, boolean creation) {
+  /*public void fillContactCreation(ContactData contactData, boolean creation) {
     if (isElementPressent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
             && isElementPressent(By.name("update"))) {
@@ -66,6 +66,34 @@ public class ContactHelper extends HelperBase {
 
       }
 
+    }
+  }*/
+  public void fillContactCreation(ContactData contactData, boolean creation) {
+    if (isElementPressent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPressent(By.name("update"))) {
+      return;
+    }
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHometel());
+    type(By.name("work"), contactData.getWorktel());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    attach(By.name("photo"),contactData.getPhoto());
+
+    if (creation) {
+      if (contactData.getGroup() == null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByValue("[none]");
+      } else {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+             }
+
+    } else {
+      Assert.assertFalse(isElementPressent(By.name("new_group")));
     }
   }
 

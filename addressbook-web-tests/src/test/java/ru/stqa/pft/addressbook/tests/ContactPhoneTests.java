@@ -15,7 +15,10 @@ public class ContactPhoneTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().ContactPage();
     if (app.contact().all().size()==0){
-      app.contact().create(new ContactData().withName("Белль").withLastname("Джейсон").withAddress("1, Заколдованный Замок, Волшебный Лес").withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444").withEmail("bell@dis.com").withEmail2("bell2@dis.com").withEmail3("bell3@dis.com"));
+      app.contact().create(new ContactData().withName("Белль").withLastname("Джейсон")
+              .withAddress("1, Заколдованный Замок, Волшебный Лес")
+              .withHometel("+22222222").withMobile("+333333333").withWorktel("+4444444444")
+              .withEmail("bell@dis.com").withEmail2("bell2@dis.com").withEmail3("bell3@dis.com"));
     }
   }
 
